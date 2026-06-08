@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel TCC — RH Porto Alegre</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 14px; background: #f5f5f3; color: #1a1a18; padding: 2rem; }
+  .panel { max-width: 820px; margin: 0 auto; }
+  h1 { font-size: 17px; font-weight: 500; margin-bottom: 0.3rem; }
+  .subtitle { font-size: 13px; color: #5a5a58; line-height: 1.5; margin-bottom: 1.5rem; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .meta-card { background: #fff; border-radius: 8px; padding: 0.75rem 1rem; border: 0.5px solid #d3d1c7; }
+  .meta-label { font-size: 11px; color: #888780; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .meta-value { font-size: 13px; font-weight: 500; color: #1a1a18; line-height: 1.4; }
+  .objective-box { background: #fff; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; border: 0.5px solid #d3d1c7; }
+  .obj-label { font-size: 11px; font-weight: 500; color: #888780; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .obj-text { font-size: 14px; font-style: italic; line-height: 1.65; color: #1a1a18; }
+  .section-title { font-size: 11px; font-weight: 500; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; margin: 1.5rem 0 0.75rem; }
+  .accordion { border: 0.5px solid #d3d1c7; border-radius: 10px; overflow: hidden; margin-bottom: 6px; background: #fff; }
+  .acc-header { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1.25rem; cursor: pointer; }
+  .acc-header:hover { background: #f5f5f3; }
+  .acc-left { display: flex; align-items: center; gap: 10px; }
+  .acc-num { font-size: 12px; color: #888780; min-width: 16px; }
+  .acc-name { font-size: 14px; font-weight: 500; }
+  .acc-pages { font-size: 12px; color: #888780; margin-left: 4px; }
+  .acc-right { display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 11px; padding: 3px 9px; border-radius: 99px; font-weight: 500; }
+  .badge-pending { background: #faeeda; color: #854f0b; }
+  .badge-done { background: #eaf3de; color: #3b6d11; }
+  .badge-progress { background: #e6f1fb; color: #185fa5; }
+  .chevron { font-size: 18px; color: #888780; display: inline-block; transition: transform 0.2s; }
+  .chevron.open { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 0 1.25rem 1rem; border-top: 0.5px solid #d3d1c7; }
+  .acc-body.open { display: block; }
+  .subsection { margin-top: 0.85rem; }
+  .sub-label { font-size: 11px; font-weight: 500; color: #5a5a58; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sub-text { font-size: 13px; color: #1a1a18; line-height: 1.6; }
+  .decision-box { background: #f5f5f3; border-left: 2px solid #378add; border-radius: 0 6px 6px 0; padding: 0.6rem 0.9rem; font-size: 13px; color: #1a1a18; line-height: 1.5; }
+  .pending-box { background: #f5f5f3; border-left: 2px solid #ef9f27; border-radius: 0 6px 6px 0; padding: 0.6rem 0.9rem; font-size: 13px; color: #1a1a18; line-height: 1.5; }
+  .box-list { display: flex; flex-direction: column; gap: 6px; }
+  .section-header { background: #f1efe8; padding: 0.4rem 0.7rem; border-radius: 6px; font-size: 11px; font-weight: 500; color: #444441; margin: 0.75rem 0 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="panel">
+
+  <h1>TCC — MBA em Data Science e Analytics · USP/ESALQ</h1>
+  <p class="subtitle">Regiões Homogêneas de Valorização Imobiliária em Porto Alegre:<br>atualização metodológica com clustering geoespacial e regressão hedônica</p>
+
+  <div class="meta-grid">
+    <div class="meta-card"><div class="meta-label">Delineamento</div><div class="meta-value">Estudo de Caso Único — Instrumental</div></div>
+    <div class="meta-card"><div class="meta-label">Natureza dos dados</div><div class="meta-value">Quantitativa</div></div>
+    <div class="meta-card"><div class="meta-label">Objetivo geral</div><div class="meta-value">Explicativo c/ elementos descritivos</div></div>
+    <div class="meta-card"><div class="meta-label">Coleta de dados</div><div class="meta-value">Dados secundários externos</div></div>
+    <div class="meta-card"><div class="meta-label">Limite de páginas</div><div class="meta-value">30 (incluindo apêndices)</div></div>
+    <div class="meta-card"><div class="meta-label">Referência normativa</div><div class="meta-value">NBR 14653-2:2011</div></div>
+  </div>
+
+  <div class="objective-box">
+    <div class="obj-label">Objetivo da Pesquisa</div>
+    <div class="obj-text">Atualizar a delimitação de Regiões Homogêneas de Valorização Imobiliária do município de Porto Alegre por meio de técnicas de clustering geoespacial e regressão hedônica, comparando os resultados com o estudo de referência de Lapolli et al. (1994).</div>
+  </div>
+
+  <div class="section-title">Estrutura do TCC</div>
+
+  <div id="sections"></div>
+
+  <div class="section-title" style="margin-top:1.75rem;">Decisões já tomadas</div>
+  <div class="box-list">
+    <div class="decision-box">Delineamento: Estudo de Caso Único (não Implementação de Algoritmo de ML), por ênfase no problema aplicado e adequação ao prazo e ao nível de programação disponível.</div>
+    <div class="decision-box">Limite de páginas: 30 — template padrão USP/ESALQ.</div>
+    <div class="decision-box">Comparativo com Lapolli et al. (1994) é o principal diferencial do trabalho — perspectiva histórica de 30 anos.</div>
+    <div class="decision-box">Ferramentas analíticas: clustering (K-Means ou DBSCAN), Índice de Moran I para validação espacial, regressão OLS log-log.</div>
+    <div class="decision-box">Ferramentas de execução: Python (GeoPandas, Scikit-learn, PySAL, Statsmodels) ou R — a definir.</div>
+  </div>
+
+  <div class="section-title" style="margin-top:1.75rem;">Pendências abertas</div>
+  <div class="box-list">
+    <div class="pending-box">⚠ Confirmar acesso aos dados de ITBI da SMF/PMPA (transações reais vs. preços anunciados em portais).</div>
+    <div class="pending-box">⚠ Definir fonte de dados de portais imobiliários: scraping próprio, API ou dataset público.</div>
+    <div class="pending-box">⚠ Decidir linguagem de implementação: Python ou R.</div>
+    <div class="pending-box">⚠ Confirmar acesso ao artigo original de Lapolli et al. (1994) completo — variáveis e modelos originais.</div>
+  </div>
+
+</div>
+
+<script>
+const sections = [
+  { num:"—", name:"Folha de rosto", pages:"p. 1", status:"pending", content: null },
+  { num:"—", name:"Título · Resumo · Palavras-chave", pages:"p. 2", status:"pending", content:{
+    proposito: "Apresentar síntese completa do trabalho em no máximo 250 palavras.",
+    conteudo: "Contextualização breve + objetivo + metodologia (síntese) + principais resultados + conclusão. Mínimo 3 / máximo 5 palavras-chave, todas diferentes do título.",
+    decisoes: "Redigir em pretérito perfeito do indicativo. Sem citações bibliográficas.",
+    pendencia: "Redigir somente após conclusão do TCC."
+  }},
+  { num:"1", name:"Introdução", pages:"2 p. · p. 3–4", status:"pending", content:{
+    proposito: "Contextualizar o problema, justificar a pesquisa e apresentar o objetivo no último parágrafo.",
+    conteudo: "Defasagem de 30 anos entre Lapolli et al. (1994) e o mercado atual; papel das RH na PGV/IPTU de Porto Alegre; evolução das ferramentas disponíveis (GIS, big data, ML); gap normativo (NBR 5676/1989 → NBR 14653-2:2011).",
+    decisoes: "Máximo 2 páginas. Objetivo no último parágrafo. Embasamento em literatura científica — sem blogs, slides ou jornais não científicos."
+  }},
+  { num:"2", name:"Metodologia", pages:"6–7 p. · p. 5–11", status:"progress", content:{
+    proposito: "Detalhar como a pesquisa foi conduzida com nível de reprodutibilidade — critério de avaliação formal.",
+    conteudo: "1) Caracterização do estudo de caso (POA como mercado imobiliário); 2) Fontes de dados secundários e critérios de coleta; 3) Pré-processamento e geocodificação; 4) Variáveis do modelo (dependente: preço/m²; independentes hedônicas: área, tipologia, padrão construtivo, distância a polos, renda do setor censitário, acesso a transporte); 5) Clustering geoespacial — escolha do algoritmo, critério de k, validação; 6) Regressão OLS log-log — diagnósticos; 7) Critérios de comparação com 1994.",
+    decisoes: "Declarar explicitamente o delineamento: Estudo de Caso Único Instrumental + dados secundários externos (Malhotra, 2004). Justificar cada variável hedônica com apoio na NBR 14653-2.",
+    pendencia: "Definição final das fontes de dados condiciona detalhamento desta seção."
+  }},
+  { num:"3", name:"Resultados e Discussão", pages:"10–12 p. · p. 12–23", status:"pending", content:{
+    proposito: "Apresentar, interpretar e discutir os resultados à luz da literatura e do estudo original de 1994.",
+    conteudo: "Bloco 1 — Estatísticas descritivas do dataset (n, preço médio/m², distribuição por tipologia e bairro); Bloco 2 — Mapa das RH identificadas por clustering + comparativo visual com as ~140 RH originais; Bloco 3 — Tabela de coeficientes OLS com significância estatística + comparação de R²; Bloco 4 — Índice de Moran I (validação da ausência de autocorrelação espacial residual).",
+    decisoes: "Discussão deve incluir análise crítica de limitações e pontos positivos. O comparativo explícito com 1994 é obrigatório — é o diferencial central do trabalho."
+  }},
+  { num:"4", name:"Conclusão", pages:"2 p. · p. 24–25", status:"pending", content:{
+    proposito: "Responder ao objetivo da pesquisa de forma inequívoca. Sem citações bibliográficas.",
+    conteudo: "Achado 1: quantas RH foram identificadas vs. ~140 de 1994. Achado 2: variáveis hedônicas mais determinantes hoje. Achado 3: ganho metodológico do clustering automatizado frente à delimitação por vistoria de campo. Limitações do estudo e agenda futura.",
+    decisoes: "Proibido reproduzir resultados literalmente ou citar referências. Apenas síntese interpretativa."
+  }},
+  { num:"—", name:"Referências", pages:"2–3 p. · p. 26–28", status:"pending", content:{
+    conteudo: "Núcleo mínimo: Lapolli et al. (1994); NBR 14653-2:2011 (ABNT); Fávero & Belfiore (2017, 2019); Gujarati (2011); Anselin (1988 — Índice de Moran); literatura hedônica imobiliária; literatura de clustering geoespacial.",
+    decisoes: "Alinhadas à esquerda, ordem alfabética, normas USP/ESALQ (item 18 do manual)."
+  }},
+  { num:"—", name:"Apêndice(s)", pages:"1–2 p. · p. 29–30", status:"pending", content:{
+    conteudo: "Opcional: código Python/R comentado das etapas principais, ou tabelas de resultados complementares.",
+    decisoes: "Dentro do limite de 30 páginas totais."
+  }}
+];
+
+const statusLabel = { pending:"Pendente", progress:"Em andamento", done:"Concluído" };
+const statusClass = { pending:"badge-pending", progress:"badge-progress", done:"badge-done" };
+
+const container = document.getElementById('sections');
+sections.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'accordion';
+  let bodyHtml = '';
+  if (s.content) {
+    const c = s.content;
+    if (c.proposito) bodyHtml += `<div class="subsection"><div class="sub-label">Propósito da seção</div><div class="sub-text">${c.proposito}</div></div>`;
+    if (c.conteudo) bodyHtml += `<div class="subsection"><div class="sub-label">Conteúdo previsto</div><div class="sub-text">${c.conteudo}</div></div>`;
+    if (c.decisoes) bodyHtml += `<div class="subsection"><div class="sub-label">Decisões / restrições</div><div class="decision-box">${c.decisoes}</div></div>`;
+    if (c.pendencia) bodyHtml += `<div class="subsection"><div class="sub-label">Pendência</div><div class="pending-box">${c.pendencia}</div></div>`;
+  }
+  div.innerHTML = `
+    <div class="acc-header" onclick="toggle(${i})">
+      <div class="acc-left">
+        <span class="acc-num">${s.num}</span>
+        <span class="acc-name">${s.name}</span>
+        <span class="acc-pages">${s.pages}</span>
+      </div>
+      <div class="acc-right">
+        <span class="badge ${statusClass[s.status]}">${statusLabel[s.status]}</span>
+        ${bodyHtml ? `<span class="chevron" id="chev-${i}">▾</span>` : ''}
+      </div>
+    </div>
+    ${bodyHtml ? `<div class="acc-body" id="body-${i}">${bodyHtml}</div>` : ''}
+  `;
+  container.appendChild(div);
+});
+
+function toggle(i) {
+  const body = document.getElementById('body-' + i);
+  const chev = document.getElementById('chev-' + i);
+  if (!body) return;
+  const open = body.classList.toggle('open');
+  if (chev) chev.classList.toggle('open', open);
+}
+</script>
+</body>
+</html>
