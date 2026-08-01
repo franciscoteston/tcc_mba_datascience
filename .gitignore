@@ -1,0 +1,28 @@
+# Dados brutos (grande volume — não versionar)
+dados/brutos/
+dados/*.csv
+dados/*.xlsx
+dados/*.geojson
+dados/*.shp
+dados/*.dbf
+dados/*.shx
+dados/*.prj
+dados/*.cpg
+dados/*.qpj
+
+# Ambientes Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Outputs intermediários grandes
+outputs/mapas/*.png
+outputs/mapas/*.tif
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
