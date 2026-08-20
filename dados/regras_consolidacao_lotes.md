@@ -108,20 +108,32 @@ Calculados após a limpeza:
 
 ---
 
-## Resultado esperado da consolidação
+## Resultado da consolidação
 
-| Métrica | Valor esperado |
+| Métrica | Valor |
 |---|---|
 | Total bruto (LF + BF + GL) | 198.189 registros |
-| Registros removidos | a apurar na execução |
-| **Camada LOTES consolidada** | **a apurar na execução** |
-| Arquivo de saída | `lotes_consolidados.gpkg` |
+| ① Geometry nula removidos | 4 |
+| ② AREA = 0 removidos | 45 |
+| ③ Registros fantasma removidos | 12 |
+| ④ NUMBLOCO duplicados removidos | 9 |
+| **Total removido** | **63 registros (0,03%)** |
+| **Camada LOTES consolidada** | **198.126 registros** |
+| Com cadastro (NUMBLOCO ≠ 000000000000) | 172.153 |
+| Sem cadastro (NUMBLOCO = 000000000000) | 25.973 |
+| Sublotes (SUBLOTE ≠ 0000) | 7.086 |
+| Origem BF | 155.693 |
+| Origem LF | 42.010 |
+| Origem GL | 423 |
+| Arquivo de saída | `lotes_consolidados.gpkg` (83,1 MB) |
+| Notebook de geração | `02_consolida_lotes.ipynb` |
+| Data de geração | junho/2025 |
 
 ---
 
 ## Pendências
 
-- [ ] Apurar contagem final após execução do notebook `02_consolida_lotes.ipynb`
+- [x] Apurar contagem final após execução do `02_consolida_lotes.ipynb` — **concluído: 198.126 registros**
 - [ ] Converter CRS para EPSG:31982 antes das análises espaciais
-- [ ] Confirmar chave de ligação NUMBLOCO com dados do SIAT e ITBI
-- [ ] Verificar se há outros shapefiles disponíveis (bairros, logradouros, eixos de vias)
+- [ ] Confirmar chave de ligação NUMBLOCO com SIAT e ITBI
+- [ ] Verificar shapefiles adicionais (bairros, logradouros, eixos de vias)
