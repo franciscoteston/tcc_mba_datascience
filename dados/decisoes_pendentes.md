@@ -52,3 +52,21 @@ variável explicativa no modelo ou como critério de validação das RH.
 volume amostral após exploração dos dados de ITBI e Ofertas.
 **Ação futura:** Após exploração dos XLSX, verificar distribuição temporal
 das transações e confirmar se 2022–2023 forma amostra suficiente.
+
+---
+
+## Escopo geográfico — decisões registradas
+
+### DP-06 — Ilhas do município
+**Status:** Definido
+**Decisão:** Ilhas excluídas do escopo da análise (modelo hedônico e clustering).
+**Justificativa:** Mercado imobiliário de ilhas tem dinâmica distinta do continente
+— inclusão contaminaria o modelo com observações atípicas, violando o pressuposto
+de homogeneidade amostral da NBR 14653-2.
+**Implementação:**
+- Camada `poa_ilhas_tm-sirgas.shp` usada como máscara de subtração sobre LOTES
+- Lotes com centroide dentro de qualquer polígono de ilha → excluídos da amostra
+- Ilhas mantidas na visualização do mapa do município (camada separada)
+**Arquivo:** `poa_ilhas/poa_ilhas_tm-sirgas.shp`
+**Notebook:** a implementar em etapa de pré-processamento
+
