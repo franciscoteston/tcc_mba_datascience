@@ -70,3 +70,38 @@ de homogeneidade amostral da NBR 14653-2.
 **Arquivo:** `poa_ilhas/poa_ilhas_tm-sirgas.shp`
 **Notebook:** a implementar em etapa de pré-processamento
 
+---
+
+## SIAT — Schema e decisões de leitura
+
+### DP-07 — Encoding e decimal dos arquivos TXT
+**Status:** Definido
+**Decisão:** Ler todos os `.txt` com `encoding="latin1"` e `decimal=","`.
+Verificar se há caracteres corrompidos após leitura e tratar pontualmente.
+**Implementação:** `pd.read_csv(arquivo, sep="|", encoding="latin1", decimal=",")`
+
+### DP-08 — Chave de ligação SIAT ↔ GEO-SMF
+**Status:** Definido
+**Decisão:** `NUM_BLOCO` no SIAT é inteiro de 10 dígitos; `NUMBLOCO` no shapefile
+é string de 12 dígitos com zeros à esquerda. Conversão obrigatória antes do join:
+`df["NUM_BLOCO_STR"] = df["NUM_BLOCO"].astype(str).str.zfill(12)`
+
+### DP-09 — Tabelas SIAT utilizadas no modelo
+**Status:** Definido
+| Tabela | Papel |
+|---|---|
+| IMO_VW_LOTE_FISCAL | Base principal — área, posição na quadra, figura |
+| IMO_VW_UNIDADE_IMOBILIARIA | Uso, finalidade, flag terreno sem construção |
+| IMO_VW_TESTADA | Frentes do lote, metragem, logradouro principal |
+| IMO_VW_IPTU_TCL | Valor venal terreno, filtro temporal por ANO_EXERCICIO |
+| IMO_VW_REGISTRO_IMOVEL | Matrícula — validação NUMBLOCO compartilhado |
+| IMO_CLASSES_E_RH | RH da época — somente comparação futura |
+| IPT_VW_VALORES_EXERCICIO_DAT | Desconsiderado (arquivo vazio) |
+
+### DP-10 — Frentes do lote
+**Status:** Definido
+**Decisão:** Número de frentes derivado de `IMO_VW_TESTADA` — contar linhas
+por `IDF_LOTE` onde `FLG_PRINCIPAL = 'S'` ou total de `NUM_SEQUENCIA` distintos.
+`COD_LOGRADOURO` cruzado com `CDIDELOG` dos eixos para obter categoria da via.
+Complementa `DES_POSICAO_NA_QUADRA` de `IMO_VW_LOTE_FISCAL`.
+
