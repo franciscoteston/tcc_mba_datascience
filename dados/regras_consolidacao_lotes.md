@@ -105,6 +105,7 @@ Calculados após a limpeza:
 | jun/2025 | Manter registros com NUMBLOCO = 000000000000 | Indicam existência de imóvel no território, mesmo sem cadastro — relevante para delimitação das RH |
 | jun/2025 | Limiar de borda: 5 m² | Verificação visual (QGIS) confirmou que overlaps ≤ 5 m² são imprecisões de digitalização entre lotes contíguos |
 | jun/2025 | Camadas LF, BF e GL tratadas como complementares (não hierárquicas) | Análise de sobreposição confirmou que não há contenção sistemática entre camadas — são unidades do mesmo nível territorial |
+| jun/2025 | Hierarquia de qualidade geométrica: BF > LF = GL | Confirmado pela PMPA/SMF: BF têm geometria ajustada por aerolevantamento digital; LF e GL mantêm geometria pré-aero com possíveis divergências territoriais. Sobreposições entre camadas são artefatos do período de transição entre ajustes. Para cálculos espaciais (centroide, área geométrica, distâncias), preferir geometria BF quando disponível. |
 
 ---
 
@@ -137,3 +138,4 @@ Calculados após a limpeza:
 - [ ] Converter CRS para EPSG:31982 antes das análises espaciais
 - [ ] Confirmar chave de ligação NUMBLOCO com SIAT e ITBI
 - [ ] Verificar shapefiles adicionais (bairros, logradouros, eixos de vias)
+- [ ] Para cálculos espaciais: implementar lógica de preferência BF sobre LF/GL quando o mesmo lote existir nas duas camadas (identificar pelo NUMBLOCO/LOTE_PAI). Implementar no notebook de pré-processamento.
